@@ -103,10 +103,13 @@ variable "instance_initiated_shutdown_behavior" {
   type        = string
   description = "The behavior of instances when they are shut down. Must be stop or terminate."
 
-  default = "stop"
+  default = null
 
   validation {
-    condition     = contains(["stop", "terminate"], var.instance_initiated_shutdown_behavior)
+    condition = (
+      var.instance_initiated_shutdown_behavior == null ||
+      contains(["stop", "terminate"], var.instance_initiated_shutdown_behavior)
+    )
     error_message = "Invalid instance initiated shutdown behavior: must be stop or terminate."
   }
 }
