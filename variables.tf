@@ -54,6 +54,20 @@ variable "block_device_mappings" {
   default = []
 }
 
+variable "desired_capacity" {
+  type        = number
+  description = "The initial number of instances desired. This value is ignored on Terraform updates to allow other processes to control it."
+
+  default = null
+}
+
+variable "desired_capacity_type" {
+  type        = string
+  description = "The unit of measurement for the value specified for desired_capacity. Supported for attribute-based instance type selection only. Valid values: `units`, `vcpu`, `memory-mib`."
+
+  default = null
+}
+
 variable "disable_api_stop" {
   type        = bool
   description = "Disable the ability to stop instances from the API."
@@ -141,13 +155,6 @@ variable "instance_refresh" {
 variable "instance_type" {
   type        = string
   description = "The instance type to use for the autoscaling group. This is required if mixed_instances_overrides is not defined."
-
-  default = null
-}
-
-variable "instances_desired" {
-  type        = number
-  description = "The initial number of instances desired. This value is ignored on Terraform updates to allow other processes to control it."
 
   default = null
 }

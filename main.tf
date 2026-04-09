@@ -201,7 +201,8 @@ resource "aws_launch_template" "it" {
 
 resource "aws_autoscaling_group" "it" {
   capacity_rebalance        = var.capacity_rebalance
-  desired_capacity          = var.instances_desired
+  desired_capacity          = var.desired_capacity
+  desired_capacity_type     = var.desired_capacity_type
   health_check_grace_period = var.health_check.grace_period
   health_check_type         = var.health_check.type
   max_instance_lifetime     = var.max_instance_lifetime
